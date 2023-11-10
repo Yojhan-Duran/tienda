@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
 import { VendedorComponent } from './components/vendedor/vendedor.component';
 import { CompradorComponent } from './components/comprador/comprador.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     VendedorComponent,
-    CompradorComponent
+    CompradorComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { CompradorComponent } from './components/comprador/comprador.component';
       { path: '', component: MainComponent },
       { path: 'vendedor', component: VendedorComponent },
       { path: 'comprador', component: CompradorComponent },
+      { path: 'login', component: LoginComponent },
     ])
   ],
   bootstrap: [AppComponent]
