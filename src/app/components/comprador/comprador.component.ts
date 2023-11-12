@@ -15,7 +15,16 @@ export class CompradorComponent implements OnInit {
 
   ngOnInit(): void {
     // Obtener la lista de productos desde el servicio
-    this.productos = this.productoService.getProductos();
+    //this.productos = this.productoService.getProductos();
+
+    // Obtener productos desde la base de datos
+    this.productoService.obtenerProductos().subscribe(misProductos => {
+
+      console.log(misProductos);
+
+      this.productos = Object.values(misProductos);
+    });
+
   }
 
   agregarAlCarrito(producto: Producto): void {

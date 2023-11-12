@@ -9,6 +9,8 @@ import { MainComponent } from './components/main/main.component';
 import { VendedorComponent } from './components/vendedor/vendedor.component';
 import { CompradorComponent } from './components/comprador/comprador.component';
 import { LoginComponent } from './login/login.component';
+import { DataServices } from './data.services';
+import {HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: MainComponent },
       { path: 'vendedor', component: VendedorComponent },
@@ -28,6 +31,7 @@ import { LoginComponent } from './login/login.component';
       { path: 'login', component: LoginComponent },
     ])
   ],
+  providers: [DataServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

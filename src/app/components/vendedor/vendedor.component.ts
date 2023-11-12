@@ -8,7 +8,7 @@ import { Producto, ProductoService } from '../../services/producto.service';
   styleUrls: ['./vendedor.component.css']
 })
 export class VendedorComponent {
-  nuevoProducto = { nombre: '', precios: [{ unidad: 'libra', precio: 0 }], imagen: null } as Producto; // Añadir tipo Producto
+  nuevoProducto = { nombre: " ", precios: [{ unidad: 'libra', precio: 0 }], imagen: null } as Producto; // Añadir tipo Producto
   imagenPreview: string | ArrayBuffer | null = null;
 
   constructor(private productoService: ProductoService) {}
