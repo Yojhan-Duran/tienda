@@ -1,6 +1,8 @@
 // producto.service.ts
 import { Injectable } from '@angular/core';
 import { DataServices } from '@app/data.services';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface Producto {
   nombre: string;
@@ -12,24 +14,17 @@ export interface Producto {
   providedIn: 'root',
 })
 export class ProductoService {
-
-  constructor(private dataService:DataServices){
-
-  }
-
-  obtenerProductos(){
-
-    return this.dataService.cargarProductos();
-  }
-
   private productos: Producto[] = [];
+  private productosUrl = 'https://bd-tiendavirtual-default-rtdb.firebaseio.com/datos.json';
 
-  getProductos(): Producto[] {
-    return this.productos;
+  constructor(private dataService: DataServices, private http: HttpClient) {}
+
+  obtenerProductos(): Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.productosUrl);
   }
 
   agregarProducto(producto: Producto): void {
     this.productos.push(producto);
-    this.dataService.agregarProducto(this.productos); 
+    this.dataService.agregarProducto(this.productos);
   }
 }

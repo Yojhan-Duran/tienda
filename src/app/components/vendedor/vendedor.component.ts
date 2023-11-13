@@ -8,7 +8,7 @@ import { Producto, ProductoService } from '../../services/producto.service';
   styleUrls: ['./vendedor.component.css']
 })
 export class VendedorComponent {
-  nuevoProducto = { nombre: " ", precios: [{ unidad: 'libra', precio: 0 }], imagen: null } as Producto; // Añadir tipo Producto
+  nuevoProducto = { nombre: '', precios: [{ unidad: 'libra', precio: 0 }], imagen: null, rutaImagen: null } as Producto;
   imagenPreview: string | ArrayBuffer | null = null;
 
   constructor(private productoService: ProductoService) {}
@@ -34,9 +34,8 @@ export class VendedorComponent {
     this.nuevoProducto.precios.push({ unidad: 'libra', precio: 0 });
   }
 
-  // Método para resetear el formulario
   private resetearFormulario() {
-    this.nuevoProducto = { nombre: '', precios: [{ unidad: 'libra', precio: 0 }], imagen: null } as Producto;
+    this.nuevoProducto = { nombre: '', precios: [{ unidad: 'libra', precio: 0 }], imagen: null, rutaImagen: null } as Producto;
     this.imagenPreview = null;
   }
 }

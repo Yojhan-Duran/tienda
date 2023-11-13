@@ -17,7 +17,7 @@ export class DataServices{
 
         this.httpClient.put('https://bd-tiendavirtual-default-rtdb.firebaseio.com/datos.json',productos).subscribe(
 
-            Response => console.log("El Producto se ha Agregado: " + Response),
+           Response => console.log("El Producto se ha Agregado: " + Response),
             
             error => console.log("Error: " + error), 
             

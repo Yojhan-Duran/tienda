@@ -1,34 +1,28 @@
-<!-- vendedor.component.html -->
-<section class="container mt-4">
-  <h2>Agregar Producto</h2>
-  <form (submit)="agregarProducto()">
-    <div class="mb-3">
-      <label for="nombreProducto" class="form-label">Nombre del Producto</label>
-      <input type="text" class="form-control" id="nombreProducto" [(ngModel)]="nuevoProducto.nombre" required>
+<div class="container mt-5">
+  <div>
+    <label for="nombre">Nombre del Producto:</label>
+    <input type="text" id="nombre" [(ngModel)]="nuevoProducto.nombre" required class="form-control">
+  </div>
+  <!-- Sección de precios -->
+  <div class="bb mt-5" *ngFor="let precio of nuevoProducto.precios; let i = index">
+    <label for="precio{{ i }}" class="form-label">Precio y unidad:</label>
+    <div class="input-group">
+      <input type="number" id="precio{{ i }}" [(ngModel)]="precio.precio" required class="form-control">
+      <select class="selector form-select" [(ngModel)]="precio.unidad">
+        <option value="libra">Libra</option>
+        <option value="kilo">Kilo</option>
+        <option value="arroba">Arroba</option>
+        <option value="bulto">Bulto</option>
+      </select>
     </div>
-    <div class="mb-3">
-      <label for="preciosProducto" class="form-label">Precios</label>
-      <div *ngFor="let precio of nuevoProducto.precios; let i = index" class="row mb-2">
-        <div class="col-4">
-          <input type="number" class="form-control" [(ngModel)]="precio.precio" required>
-        </div>
-        <div class="col-8">
-          <select class="form-select" [(ngModel)]="precio.unidad" required>
-            <option value="libra">Libra</option>
-            <option value="kilo">Kilo</option>
-            <option value="arroba">Arroba</option>
-            <option value="bulto">Bulto</option>
-            <!-- Agrega más opciones según sea necesario -->
-          </select>
-        </div>
-      </div>
-      <button type="button" class="btn btn-secondary" (click)= "agregarPrecio()">Agregar Precio</button>
-    </div>
-    <div class="mb-3">
-      <label for="imagenProducto" class="form-label">Imagen del Producto</label>
-      <input type="file" class="form-control" id="imagenProducto" (change)="cargarImagen($event)" accept="image/*" required>
-      <img [src]="imagenPreview" *ngIf="imagenPreview" class="img-thumbnail mt-2" alt="Vista previa de la imagen">
-    </div>
-    <button type="submit" class="btn btn-primary">Agregar Producto</button>
-  </form>
-</section>
+    <button class="btn btn-primary mt-3" (click)="agregarPrecio()">Agregar Precio</button>
+  </div>
+
+  <!-- Sección de carga de imagen -->
+  <div class="hh mt-4">
+    <label for="imagen">Cargar Imagen:</label>
+    <input type="file" id="imagen" (change)="cargarImagen($event)" class="form-control-file">
+  </div>
+
+  <button class="btn1 btn-success mt-3" (click)="agregarProducto()">Agregar Producto</button>
+</div>
