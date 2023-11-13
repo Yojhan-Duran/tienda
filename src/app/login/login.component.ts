@@ -1,21 +1,29 @@
 // login.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   username: string = '';
   password: string = '';
   userType: string = '';
+  constructor(private loginService:LoginService){
 
-  loginFormSubmit(): void {
-    // Lógica para manejar el envío del formulario aquí
-    console.log('Formulario enviado');
-    console.log('Usuario:', this.username);
-    console.log('Contraseña:', this.password);
-    console.log('Tipo de Usuario:', this.userType);
+
+
+  }
+  ngOnInit(): void {
+    
+  }
+  login(form:NgForm){
+    const username=form.value.username
+    const password=form.value.password
+    const userType=form.value.userType
+    this.loginService.login(username, password, userType )
   }
 }

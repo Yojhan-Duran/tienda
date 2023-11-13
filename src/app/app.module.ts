@@ -10,6 +10,7 @@ import { CompradorComponent } from './components/comprador/comprador.component';
 import { LoginComponent } from './login/login.component';
 import { DataServices } from './data.services';
 import {HttpClientModule } from '@angular/common/http';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {HttpClientModule } from '@angular/common/http';
       { path: 'login', component: LoginComponent },
     ])
   ],
-  providers: [DataServices],
+  providers: [DataServices, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

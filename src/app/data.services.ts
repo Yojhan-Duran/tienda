@@ -1,15 +1,16 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Producto } from "./services/producto.service";
+import { LoginService } from "./login/login.service";
 
 @Injectable()
 export class DataServices{
 
-    constructor(private httpClient:HttpClient){}
+    constructor(private httpClient:HttpClient,private loginService:LoginService){}
 
     cargarProductos(){
-
-        return this.httpClient.get('https://bd-tiendavirtual-default-rtdb.firebaseio.com/datos.json');
+        const token=this.loginService.getIdToken();
+        return this.httpClient.get('https://bd-tiendavirtual-default-rtdb.firebaseio.com/datos.json?auth=' + token);
     }
 
 
