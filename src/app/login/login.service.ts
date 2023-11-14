@@ -1,29 +1,42 @@
-import { Token } from "@angular/compiler";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 @Injectable()
-export class LoginService{
-     constructor(private router:Router){}
-     token: string='';
-     login(username:string, password:string, userType:string){
-            firebase.auth().signInWithEmailAndPassword(username, password).then(
+ 
+export class LoginService {
+  Token: string | undefined;
+  
+  constructor(private router: Router) {}
 
-                Response=>{
-                 firebase.auth().currentUser?.getIdToken().then(
-                        token=>{
-                         this.token=token;
-                         this.router.navigate(['/comprador']);
-                        }
 
-                    )
-                }
 
-            )
-         }
-     getIdToken(){
-        return this.token;
-     }
+  login(username: string, password: string, userType: string) {
+    
+    firebase.auth().signInWithEmailAndPassword(username, password).then(
+      response => {
+        firebase.auth().currentUser?.getIdToken().then(
+          token => {
+            this.Token = token;
+            this.router.navigate(['/']);
+          }
+        ).catch(
+          error => {
+            console.error('Error al obtener el token:', error);
+          
+          }
+        );
+      }
+    ).catch(
+      error => {
+        console.error('Error al iniciar sesión:', error);
+       
+      }
+    );
+  }
+
+  getIdToken() {
+    return this.Token;
+  }
 }

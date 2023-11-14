@@ -10,7 +10,7 @@ export class DataServices{
 
     cargarProductos(){
         const token=this.loginService.getIdToken();
-        return this.httpClient.get('https://bd-tiendavirtual-default-rtdb.firebaseio.com/datos.json?auth=' + token);
+        return this.httpClient.get('https://bd-tiendavirtual-default-rtdb.firebaseio.com/datos.json');
     }
 
 

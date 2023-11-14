@@ -3,6 +3,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    
     "paths": {
     "@app/*": ["src/app/*"]
     },
