@@ -11,6 +11,9 @@ import { LoginComponent } from './login/login.component';
 import { DataServices } from './data.services';
 import {HttpClientModule } from '@angular/common/http';
 import { LoginService } from './login/login.service';
+import { LogoutComponent } from './logout/logout.component';
+import { CookieService } from 'ngx-cookie-service';
+import { LoginGuardian } from './login/login-guardian';
 
 @NgModule({
   declarations: [
@@ -19,19 +22,24 @@ import { LoginService } from './login/login.service';
     VendedorComponent,
     CompradorComponent,
     LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component: MainComponent },
-      { path: 'vendedor', component: VendedorComponent },
-      { path: 'comprador', component: CompradorComponent },
+      
+      { path: 'logout', component: LogoutComponent },
+      { path: 'main', component: MainComponent },
+      { path: 'vendedor', component: VendedorComponent, canActivate:[LoginGuardian] },
+      { path: 'comprador', component: CompradorComponent, canActivate:[LoginGuardian] },
       { path: 'login', component: LoginComponent },
+      
+      
     ])
   ],
-  providers: [DataServices, LoginService],
+  providers: [DataServices, LoginService, CookieService, LoginGuardian],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

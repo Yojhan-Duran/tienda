@@ -1,6 +1,7 @@
 // app.component.ts
 import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase/compat/app'
+import { LoginService } from './login/login.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import firebase from 'firebase/compat/app'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  constructor(){}
+  constructor(private loginservice:LoginService){}
   title = 'mi-tienda-agricola';
   ngOnInit(): void {
     firebase.initializeApp({
@@ -16,5 +17,11 @@ export class AppComponent implements OnInit{
       authDomain: "bd-tiendavirtual.com",
 
     });
+  }
+  estaLogeado(){
+    return this.loginservice.estalogeado();
+  }
+  logout(){
+    return this.loginservice.logout();
   }
 }
