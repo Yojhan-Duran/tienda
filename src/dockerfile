@@ -1,1 +1,22 @@
-FROM node:21-alphine1.0
+# Usa una imagen base de Node.js
+FROM node:latest as builder
+
+# Establece el directorio de trabajo en /app
+WORKDIR /app
+
+# Copia el archivo package.json y package-lock.json (si está presente) al directorio de trabajo
+COPY package*.json ./
+
+# Instala las dependencias del proyecto
+RUN npm install
+
+# Copia todo el código fuente al directorio de trabajo
+COPY . .
+
+# Construye la aplicación
+RUN npm run build
+
+# Utiliza Nginx para servir la aplicación construida
+FROM nginx:alpine
+COPY --from=builder /app/dist/* /usr/share/nginx/html/
+ 
