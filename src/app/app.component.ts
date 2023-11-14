@@ -22,6 +22,8 @@ export class AppComponent implements OnInit{
     return this.loginservice.estalogeado();
   }
   logout(){
+    
+    window.location.reload
     return this.loginservice.logout();
   }
 }

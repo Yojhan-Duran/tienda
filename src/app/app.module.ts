@@ -30,11 +30,12 @@ import { LoginGuardian } from './login/login-guardian';
     HttpClientModule,
     RouterModule.forRoot([
       
-      { path: 'logout', component: LogoutComponent },
-      { path: 'main', component: MainComponent },
+      { path: '', component: LogoutComponent },
+      { path: 'main', component: MainComponent, canActivate:[LoginGuardian]},
       { path: 'vendedor', component: VendedorComponent, canActivate:[LoginGuardian] },
       { path: 'comprador', component: CompradorComponent, canActivate:[LoginGuardian] },
       { path: 'login', component: LoginComponent },
+
       
       
     ])
